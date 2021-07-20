@@ -1,4 +1,4 @@
-# [@ryanburnette/get-metar](https://github.com/ryanburnette/get-metar)
+# [get-metar](https://github.com/ryanburnette/get-metar)
 
 Get a METAR as an object from AviationWeather.gov.
 
