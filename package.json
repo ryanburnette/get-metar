@@ -1,6 +1,6 @@
 {
   "name": "@ryanburnette/get-metar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Get a METAR as an object from AviationWeather.gov.",
   "main": "index.js",
   "repository": {
@@ -8,8 +8,8 @@
     "url": "https://github.com/ryanburnette/get-metar.git"
   },
   "contributors": [
-    "Ryan Burnette <ryan.burnette@gmail.com> (https://ryanburnette.com)",
-    "Michael McCracken <michael.mccracken172@gmail.com>"
+    "Michael McCracken <michael.mccracken172@gmail.com>",
+    "Ryan Burnette <ryan.burnette@gmail.com> (https://ryanburnette.com)"
   ],
   "license": "ISC",
   "dependencies": {

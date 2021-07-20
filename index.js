@@ -6,10 +6,10 @@ var parseString = require('xml2js').parseString;
 var baseUrl =
   'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true';
 
-module.exports = function(airport) {
+module.exports = async function (airport) {
   return axios
     .get(baseUrl + '&stationString=' + airport)
-    .then(function(resp) {
+    .then(function (resp) {
       if (resp.status !== 200) {
         throw new Error('got http status ' + resp.status);
       }
@@ -18,21 +18,25 @@ module.exports = function(airport) {
       }
       return resp.data;
     })
-    .then(function(xmlString) {
-      return new Promise(function(resolve, reject) {
-        parseString(xmlString, {explicitArray: false}, function(err, result) {
-          if (err) {
-            return reject(err);
+    .then(function (xmlString) {
+      return new Promise(function (resolve, reject) {
+        parseString(
+          xmlString,
+          { explicitArray: false },
+          function (err, result) {
+            if (err) {
+              return reject(err);
+            }
+            resolve(result);
           }
-          resolve(result);
-        });
+        );
       });
     })
-    .then(function(obj) {
+    .then(function (obj) {
       obj = obj.response.data.METAR;
       obj.observation_time = new Date(obj.observation_time);
       if (obj.sky_condition.length > 0) {
-        obj.sky_condition = obj.sky_condition.map(function(el) {
+        obj.sky_condition = obj.sky_condition.map(function (el) {
           return el.$;
         });
       }
