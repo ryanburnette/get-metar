@@ -11,16 +11,17 @@ npm install @ryanburnette/get-metar
 ## Usage
 
 ```js
-var getMetar = require('@ryanburnette/get-metar');
+var getMetar = require('./index.js');
+
 (async function () {
-  var metar = await getMetar('KATL');
-  console.log(metar);
+  var icao = (process.argv[2] || 'KATL').toLowerCase();
+  var metar = await getMetar(icao);
+  console.log(JSON.stringify(metar));
 })();
 ```
 
-## Demo
+Try the demo and pipe it to jq for easier reading.
 
 ```bash
-npm ci
-node demo.js katl
+node demo.js KSRQ | jq
 ```
